@@ -1,0 +1,2 @@
+# PracticeForAtcoder
+practice poor code
