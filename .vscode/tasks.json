@@ -1,0 +1,24 @@
+{
+  // https://qiita.com/yoyomion/items/ed60a89009616f2efd55
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "C/C++: g++-5 build active file",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "/usr/bin/g++-5",
+      "args": [
+        "-g",
+        "-O0",
+        "-std=c++14",
+        "${file}"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+  ],
+  "version": "2.0.0"
+}
