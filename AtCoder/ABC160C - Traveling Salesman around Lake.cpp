@@ -16,16 +16,14 @@ int A[MAX_N];
 
 int main() {
   cin >> K >> N;
-  for (int i = 0; i < N; i++) cin >> A[i];
+  vector<int> vec(N);
+  for (int i = 0; i < N; i++) cin >> vec.at(i);
 
-  int max_diff = 0;
-  int tmp = A[N-1];
+  int tmp = vec.at(N-1);
   for (int i = N-1; i > 0; i--) {
-    A[i] -= A[i-1];
+    vec.at(i) -= vec.at(i-1);
   }
-  A[0] = A[0] + K - tmp;
-  for (int i = 0; i < N; i++){
-    chmax(max_diff, A[i]);
-  }
-  cout << K - max_diff << endl;
+  vec.at(0) = vec.at(0) + K - tmp;
+  sort(vec.begin(), vec.end());
+  cout << K - vec.at(N-1) << endl;
 }
