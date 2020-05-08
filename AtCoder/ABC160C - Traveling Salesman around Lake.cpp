@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <numeric>
 using namespace std;
-#define MAX_N 400
+#define MAX_N 200000
 
 template<class T> inline bool chmax(T& a, T b) { if(a < b) {a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if(a > b) {a = b; return true; } return false; }
@@ -19,18 +19,13 @@ int main() {
   for (int i = 0; i < N; i++) cin >> A[i];
 
   int max_diff = 0;
-  for (int i = 0; i < N; i++) {
-    for (int j = i+1; j < N; j++) {
-      int judge = (A[i] - K/2) * (A[j] - K/2);
-      if (judge >= 0) {
-        // cout << A[i] << ",\t" << A[j] << ",\t" << judge << ",\t" << abs(A[i] - A[j]) << endl;
-        chmax(max_diff, abs(A[i] - A[j]));
-      } else {
-        // cout << A[i] << ",\t" << A[j] << ",\t" << judge << ",\t" << K - abs(A[i] - A[j]) << endl;
-        chmax(max_diff, K - abs(A[i] - A[j]));
-      }
-    }
+  int tmp = A[N-1];
+  for (int i = N-1; i > 0; i--) {
+    A[i] -= A[i-1];
   }
-
+  A[0] = A[0] + K - tmp;
+  for (int i = 0; i < N; i++){
+    chmax(max_diff, A[i]);
+  }
   cout << K - max_diff << endl;
 }
