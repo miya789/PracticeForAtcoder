@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -13,39 +14,56 @@ const long long INF = 1LL << 60;
 // Input
 long long N, K;
 long long A[MAX_N];
-int A_dp[MAX_N];
+int A_hst[MAX_N];
 
 int main() {
   cin >> N >> K;
   for (int i = 0; i < N; i++) {
     cin >> A[i];
-    A[i]--;
-    A_dp[i] = -1;
-    cout << i << "," << A[i] << endl;
+    A_hst[i] = 0;
+    // cout << i << "," << A[i] << endl;
   }
   
+  int start = 0;
+  int loc = start;
+  int ct = 1;
 
-  int loc = 0;
-  int ct = 0;
-  int T = 0;
-  int next = A[loc];
-  while (A_dp[loc] == -1) {
-    next = A[loc];
-    A_dp[loc] = next;
-    cout << loc << "->" << next << " (" << A_dp[loc] << ")" << endl;
-    loc = next;
+  int next = A[loc]-1;
+  while (A_hst[next] == 0) {
+    A_hst[next] = ct;
+    cout << loc << "->" << next << " (" << A_hst[next] << ")" << endl;
+    loc = next; //move
+    next = A[loc]-1;
+
     ct++;
-    T = ct;
   }
-  int ans = 0;
-  for (int j = 0; j < T; j++) {
-    if (A_dp[j] == A_dp[T-1])
-      ans = T -j;
+  cout << "Final: " << loc << "->" << next << " (" << A_hst[next] << ")" << endl;
+  int T;
+  T = ct - A_hst[next];
+  cout << loc << "," << T << " (" << A_hst[next] << ")" << endl;
+
+  int ans_hosei = A_hst[next] - 1;
+  int amari = (K - ans_hosei) % T;
+  int ans;
+  if (K <= ans_hosei + T) {
+    ans = K;
+  } else if (A_hst[next] == next) {
+    ans = ct - 1;
+  } else {
+    ans = amari + ans_hosei;
   }
 
-  cout << T << endl;
-  cout << ans << endl;
-  cout << (K-ans-1) % T << endl;
-
-  cout << A[(K-ans-1) % T + ans]++ << endl;
+  printf("ct: %d, amari: %d, ans_hosei: %d, ans: %d\n", ct, amari, ans_hosei, ans);
+  int ans_loc;
+  for (int i = 0; i < N; i++) {
+    cout << i << "->" << A[i]-1 << " (" << A_hst[A[i]-1] << ")" << endl;
+    // cout << i << " (" << A_hst[i] << ")" << endl;
+    if (A_hst[i] == ans) {
+      ans_loc = i;
+    }
+    
+  }
+  
+  cout << ans_loc << "," << A[ans_loc] << "," << A_hst[ans_loc] << endl;
+  cout << ans_loc + 1 << endl;
 }
