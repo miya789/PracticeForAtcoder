@@ -24,39 +24,36 @@ int main() {
     // cout << i << "," << A[i] << endl;
   }
   
-  int start = 0;
-  int loc = start;
+  int loc = 0;
   int ct = 1;
 
   int next = A[loc]-1;
-  while (A_hst[next] == 0) {
+  while (ct <= K && A_hst[next] == 0) {
     A_hst[next] = ct;
-    cout << loc << "->" << next << " (" << A_hst[next] << ")" << endl;
+    // cout << loc << "->" << next << " (" << A_hst[next] << ")" << endl;
     loc = next; //move
     next = A[loc]-1;
 
     ct++;
   }
-  cout << "Final: " << loc << "->" << next << " (" << A_hst[next] << ")" << endl;
+//   cout << "Final: " << loc << "->" << next << " (" << A_hst[next] << ")" << endl;
   int T;
   T = ct - A_hst[next];
-  cout << loc << "," << T << " (" << A_hst[next] << ")" << endl;
+//   cout << loc << "," << T << " (" << A_hst[next] << ")" << endl;
 
-  int ans_hosei = A_hst[next] - 1;
+  int ans_hosei = A_hst[next];
   int amari = (K - ans_hosei) % T;
   int ans;
-  if (K <= ans_hosei + T) {
+  if (K < ans_hosei + T) {
     ans = K;
-  } else if (A_hst[next] == next) {
-    ans = ct - 1;
   } else {
     ans = amari + ans_hosei;
   }
 
-  printf("ct: %d, amari: %d, ans_hosei: %d, ans: %d\n", ct, amari, ans_hosei, ans);
-  int ans_loc;
+//   printf("ct: %d, amari: %d, ans_hosei: %d, ans: %d\n", ct, amari, ans_hosei, ans);
+  int ans_loc = -1;
   for (int i = 0; i < N; i++) {
-    cout << i << "->" << A[i]-1 << " (" << A_hst[A[i]-1] << ")" << endl;
+    // cout << i << "->" << A[i]-1 << " (" << A_hst[A[i]-1] << ")" << endl;
     // cout << i << " (" << A_hst[i] << ")" << endl;
     if (A_hst[i] == ans) {
       ans_loc = i;
@@ -64,6 +61,6 @@ int main() {
     
   }
   
-  cout << ans_loc << "," << A[ans_loc] << "," << A_hst[ans_loc] << endl;
+//   cout << ans_loc << "," << A[ans_loc] << "," << A_hst[ans_loc] << endl;
   cout << ans_loc + 1 << endl;
 }
