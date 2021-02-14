@@ -5,27 +5,21 @@ using namespace std;
 using ll = long long;
 using P = pair<int,int>;
 
-int main() {
-  ll B, C;
-  cin >> B >> C;
-  ll C12 = floor((C-1)/2);
-  ll C2 = floor(C/2);
-  ll C22 = floor((C-2)/2);
-  if (B>0) {
-    if (C12>B) {
-      cout << C12 + (2*B - 1) + C22 + 2 << endl;
-    } else {
-      cout << 2*C12 + C2 + C22 + 2 << endl;
-    }
-  } else if (B<0) {
-    if (C22>-B) {
-      cout << C2 + (2*(-B) - 1) + C12 + 1 << endl;
-    } else {
-      cout << C2 + C22 + C12 + C12 + 2 << endl;
-    }
+pair<long, long> extract(const long&B, const long&C) {
+  const auto n = C/2;
+  if (C%2) {
+    return {-B-n, -B+n};
   } else {
-    cout << C2 + C12 + 1 << endl;
+    if (!C) return {B,B};
+    return {B-n, B+n-1};
   }
+}
 
+int main() {
+  long B, C;
+  cin >> B >> C;
+  const auto [a,b] = extract(B,C);
+  const auto [c,d] = extract(B,C-1);
+  cout << (b-a+1) + (d-c+1) - max(0l, min(b,d)-max(a,c)+1) << endl;
   return 0;
 }
