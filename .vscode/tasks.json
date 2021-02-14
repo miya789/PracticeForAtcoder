@@ -3,16 +3,16 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "C/C++: g++-5 build active file",
+      "label": "C/C++: g++ build active file",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "command": "/usr/bin/g++-5",
+      "command": "/usr/bin/g++",
       "args": [
         "-g",
         "-O0",
-        "-std=c++14",
+        "-std=c++17",
         "${file}"
       ],
       "problemMatcher": [
