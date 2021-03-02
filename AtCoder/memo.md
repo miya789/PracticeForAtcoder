@@ -32,4 +32,23 @@
 
 - [ ] [第 9 問: ABC 049 C - Daydream (300 点)](https://qiita.com/drken/items/fd4e5e3630d0f5859067#%E7%AC%AC-9-%E5%95%8F--abc-049-c---daydream-300-%E7%82%B9)
 
-- [ ] [第 10 問: ABC 086 C - Traveling (300 点)](https://qiita.com/drken/items/fd4e5e3630d0f5859067#%E7%AC%AC-10-%E5%95%8F--abc-086-c---traveling-300-%E7%82%B9)
+- [x] [第 10 問: ABC 086 C - Traveling (300 点)](https://qiita.com/drken/items/fd4e5e3630d0f5859067#%E7%AC%AC-10-%E5%95%8F--abc-086-c---traveling-300-%E7%82%B9)
+
+  - 分からん
+  - **パリティ** の問題
+  - 類題
+
+    - [x] ABC093C
+      - 難しかった
+      - 対称性に気を使おう
+    - [x] AGC010A
+    - [x] AGC020A
+    - [x] ABC073C
+      - `set` で簡略化可能
+
+    > 【類題】\
+    > \
+    > ABC 093 C - Same Integers 　(今度は「不変量」に着目します)\
+    > AGC 010 A - Addition 　(AGC ですが A 問題は 300 点前後であることが多いです、パリティのよい例題です)\
+    > AGC 020 A - Move and Win 　(やはりパリティのよい例題です)\
+    > ABC 073 C - Write and Erase 　(連想配列またはソートとの複合問題です)
