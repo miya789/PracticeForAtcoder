@@ -3,16 +3,16 @@ using namespace std;
 using ll = long long;
 
 int main() {
-  int N;
+  ll N;
   cin >> N;
-  vector<int> A(N);
+  vector<ll> A(N);
   for (int i = 0; i < N; i++) cin >> A[i];
 
-  int ans = 0;
+  ll ans = 0;
   bool skip = false;
-  int past_diff = 1;
+  ll past_diff = 1;
   for (int i = 1; i < N; i++) {
-    int diff = A[i] - A[i-1];
+    ll diff = A[i] - A[i-1];
     if (i==1) past_diff = diff;
 
     if (skip) {
