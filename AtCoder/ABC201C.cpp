@@ -15,51 +15,35 @@ void _main() {
   string S;
   cin >> S;
 
-  int need = 0;
-  REP(i,0,10) {
-    if (S[i] == 'o') {
-      need++;
-    }
-  }
+  // int need = 0;
+  // REP(i,0,10) {
+  //   if (S[i] == 'o') {
+  //     need++;
+  //   }
+  // }
 
-  if (need > 4) {
-    cout << "0" << endl;
-    return;
-  }
-  cout << need << endl;
+  // if (need > 4) {
+  //   cout << "0" << endl;
+  //   return;
+  // }
+  // cout << need << endl;
 
   ll ans = 0;
-  REP(i,0,10) {
+  REP(i,0,10000) {
     vector<bool> used(10);
-    if (S[i] == 'x') continue;
-    if (S[i] == 'o') {
-      used[i] = true;
+
+    int tmp = i;
+    REP(j,0,4) {
+      used[tmp%10]  = true;
+      tmp /= 10;
     }
+
+    bool check = true;
     REP(j,0,10) {
-      if (S[j] == 'x') continue;
-      if (S[j] == 'o') {
-        used[j] = true;
-      }
-      REP(k,0,10) {
-        if (S[k] == 'x') continue;
-        if (S[k] == 'o') {
-          used[k] = true;
-        }
-        REP(l,0,10) {
-          if (S[l] == 'x') continue;
-          if (S[l] == 'o') {
-            used[l] = true;
-          }
-          int sum = accumulate(used.begin(), used.end(), 0);
-          cout << sum << endl;
-          if (accumulate(used.begin(), used.end(), 0) == need) {
-            cout << "a " << i << j << k << l << endl;
-            // cout << used[0] << endl;
-            ans++;
-          }
-        }
-      }
+      if (S[j] == 'o' && !used[j]) check = false;
+      if (S[j] == 'x' && used[j]) check = false;
     }
+    ans += check;
   }
 
   cout << ans << endl;
