@@ -19,14 +19,14 @@ void _main() {
   vector<int> X(N), Y(N);
   REP(i,0,N) cin >> X[i] >> Y[i];
 
-  int max_distance_square=0;
+  ll max_distance_square=0;
   REP(i,0,N) {
+    ll j_min = 8E18;
     REP(j,0,K) {
-      int pos_squre = pow(X[i] - X[A[j]-1],2) + pow(Y[i] - Y[A[j]-1],2);
-      if (pos_squre > max_distance_square) {
-        max_distance_square = pos_squre;
-      }
+      ll pos_squre = pow(X[i] - X[A[j]-1],2) + pow(Y[i] - Y[A[j]-1],2);
+      j_min = min(j_min, pos_squre);
     }
+    max_distance_square = max(j_min, max_distance_square);
   }
 
   double ans = sqrt(max_distance_square);
