@@ -17,22 +17,27 @@ void _main() {
 
   ll min_A;
   ll max_A;
-  if (D >= 0) {
-    min_A = A;
-    max_A = A + (N - 1) * D;
-  } else {
-    min_A = A + (N - 1) * D;
-    max_A = A;
+  if (D < 0) {
+    ll fi = A+D*(N-1);
+    A = fi;
+    D *= -1;
   }
 
+  min_A = A;
+  max_A = A + (N - 1) * D;
+
   ll ans = 1E18;
-  if ((X <= min_A) || (max_A <= X)) {
+  if (X <= min_A) {
     ans = min(ans, abs(min_A - X));
+  } else if (max_A <= X) {
     ans = min(ans, abs(X - max_A));
   } else {
-    ll diff = abs(D);
-    ans = min(ans, abs((A - X) % diff));
-    ans = min(ans, abs(diff - (A - X) % diff));
+    if(D!=0) {
+      ans = (X - min_A) % D;
+      ans = min(ans,D-ans);
+    } else {
+      ans = 0;
+    }
   }
   cout << ans << endl;
 }
