@@ -26,7 +26,7 @@ void _main() {
   min_A = A;
   max_A = A + (N - 1) * D;
 
-  ll ans = 1E18;
+  ll ans = 8E18;
   if (X <= min_A) {
     ans = min(ans, abs(min_A - X));
   } else if (max_A <= X) {
